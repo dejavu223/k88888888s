@@ -1,0 +1,71 @@
+
+
+
+
+docker version ：用于查看服务器与客户端的版本信息
+
+-docker info ：用于查看服务的配置信息。配置文件/etc/docker/daemon.json
+
+
+
+docker images：查看本地镜像的名称和标签
+docker pull：从镜像仓库下载一个镜像到本地
+# docker pull busybox:latest
+docker save：把镜像导出为一个tar文件
+docker save 镜像名称：镜像标签 -o 文件名（tar格式）
+docker load：从文件导入镜像
+docker load -i 备份文件名称
+docker history：查看镜像的分层信息
+
+创建容器：docker run -参数 <镜像名称：镜像标签> [启动命令]
+-i 交互式、-t 分配终端、-d 后台运行、--name 容器名称、-rm 容器结束后自动删除
+docker help run
+man docker-run
+
+查看容器：docker ps [ -a 显示所有容器， -q 只显示id ]
+
+启动、关闭、重启：docker start|stop|restart 容器ID
+
+在容器内执行命令：docker exec -it 容器ID 命令
+
+
+查询详细信息：docker inspect 镜像名称/容器ID
+
+排除命令：docker logs 容器ID
+
+上传：docker cp 本机文件路径 容器id：容器内路径
+下载：docker cp 容器id：容器内路径 本机文件路径
+
+
+删除容器：docker rm [ -f 强制删除 ] 容器ID
+
+删除镜像：docker rmi 镜像名称/镜像ID
+
+
+给镜像设置一个新的名称标签：docker tag 镜像 新名称：标签
+
+
+制作新镜像# docker commit 
+
+
+
+Dockerfile指令
+FROM	指定基础镜像（scratch 代表空镜像）
+RUN	在容器内执行命令，可以写多条
+ADD	把文件拷贝到容器内，如果文件是 tar.xx 格式，会自动解压
+COPY	把文件拷贝到容器内，不会自动解压
+ENV	设置启动容器的环境变量
+WORKDIR	设置启动容器的默认工作目录（唯一）
+CMD	容器默认的启动参数（唯一）
+ENTRYPOINT	容器默认的启动命令（唯一）
+USER	启动容器使用的用户（唯一）
+EXPOSE	使用镜像创建的容器默认监听使用的端口号/协议
+
+
+
+
+
+
+
+
+
